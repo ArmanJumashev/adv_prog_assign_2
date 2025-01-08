@@ -48,7 +48,6 @@ func Login(db *sql.DB) http.HandlerFunc {
             return
         }
 
-        // Проверяем, существует ли пользователь с таким email и правильным паролем
         var dbUser models.User
         err = db.QueryRow(`
             SELECT full_name, email, password, date_of_birth
@@ -63,13 +62,12 @@ func Login(db *sql.DB) http.HandlerFunc {
             return
         }
 
-        // Проверяем пароль
         if user.Password != dbUser.Password {
             http.Error(w, "Неверный пароль", http.StatusUnauthorized)
             return
         }
 
-        // Возвращаем данные пользователя
+        // возврат
         response := struct {
             FullName    string `json:"full_name"`
             Email       string `json:"email"`

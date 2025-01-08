@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
-    <title>Online Shop</title>
+    <title>Shopping Cart</title>
 </head>
 <body>
 <header>
@@ -18,8 +18,14 @@
     </nav>
 </header>
 <main>
-    <h1>Welcome to the Online Shop</h1>
-    <p>Browse our catalog or sign in to place orders!</p>
+    <h2>Your Cart</h2>
+    <div id="cartItems"></div>
+    <div id="cartSummary">
+        <p><strong>Total Price:</strong> $<span id="totalPrice">0.00</span></p>
+        <button id="checkoutButton">Proceed to Checkout</button>
+    </div>
 </main>
+
+<script src="js/cart.js"></script>
 </body>
 </html>

@@ -1,18 +1,18 @@
 package controllers
 
 import (
-    "bytes"
+//     "bytes"
 	"database/sql"
 	"encoding/json"
-	"io"
+// 	"io"
 	"log"
 	"net/http"
     "strconv"
 	"strings"
 
-    "net/smtp"
-    "mime/multipart"
-    "mime/quotedprintable"
+//     "net/smtp"
+//     "mime/multipart"
+//     "mime/quotedprintable"
 
 
     "online-shop/models"
@@ -149,95 +149,94 @@ func parseProductIDs(ids string) []int {
 }
 
 
-func SendSupportMessage() http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		message := r.FormValue("message")
-		if message == "" {
-			http.Error(w, "Message is required", http.StatusBadRequest)
-			return
-		}
-		file, _, err := r.FormFile("file")
-		if err != nil && err != http.ErrMissingFile {
-			http.Error(w, "Error processing file", http.StatusInternalServerError)
-			return
-		}
-		err = sendEmailToSupport("support@example.com", message, file)
-		if err != nil {
-			http.Error(w, "Error sending support message", http.StatusInternalServerError)
-			return
-		}
-
-		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("Message sent successfully"))
-	}
-}
-
-func sendEmailToSupport(email, message string, file io.Reader) error {
-	// Данные для SMTP-сервера
-	smtpHost := "smtp.example.com" // Адрес вашего SMTP сервера
-	smtpPort := "587"              // Порт сервера SMTP
-	from := "support@example.com"  // Ваш email, с которого будет отправляться письмо
-	password := "yourpassword"     // Пароль от email аккаунта
-
-	// Создание сообщения
-	var buf bytes.Buffer
-	writer := multipart.NewWriter(&buf)
-
-	// Создаем часть для текста сообщения
-	bodyWriter, err := writer.CreatePart(map[string][]string{
-		"Content-Type": {"text/plain; charset=UTF-8"},
-		"Content-Transfer-Encoding": {"quoted-printable"},
-	})
-	if err != nil {
-		return fmt.Errorf("failed to create text part: %v", err)
-	}
-
-	// Кодируем сообщение
-	quotedPrintable := quotedprintable.NewWriter(bodyWriter)
-	_, err = quotedPrintable.Write([]byte(message))
-	if err != nil {
-		return fmt.Errorf("failed to write quoted-printable message: %v", err)
-	}
-	quotedPrintable.Close()
-
-	// Если есть файл, добавляем его как вложение
-	if file != nil {
-		attachmentWriter, err := writer.CreateFormFile("attachment", "support_file")
-		if err != nil {
-			return fmt.Errorf("failed to create file part: %v", err)
-		}
-
-		// Копируем файл в сообщение
-		_, err = io.Copy(attachmentWriter, file)
-		if err != nil {
-			return fmt.Errorf("failed to copy file: %v", err)
-		}
-	}
-
-	writer.Close()
-
-	to := []string{"dzhumashev.arman@gmail.com"} // Email получателя
-	subject := "Support Request from " + email // Тема письма
-м
-	headers := map[string]string{
-		"From":    from,
-		"To":      strings.Join(to, ", "),
-		"Subject": subject,
-		"Content-Type": fmt.Sprintf("multipart/mixed; boundary=%s", writer.Boundary()),
-	}
-
-	var messageBytes bytes.Buffer
-	for key, value := range headers {
-		messageBytes.WriteString(fmt.Sprintf("%s: %s\r\n", key, value))
-	}
-	messageBytes.WriteString("\r\n")
-	messageBytes.Write(buf.Bytes())
-
-	auth := smtp.PlainAuth("", from, password, smtpHost)
-	err = smtp.SendMail(smtpHost+":"+smtpPort, auth, from, to, messageBytes.Bytes())
-	if err != nil {
-		return fmt.Errorf("failed to send email: %v", err)
-	}
-
-	return nil
-}
+// func SendSupportMessage() http.HandlerFunc {
+// 	return func(w http.ResponseWriter, r *http.Request) {
+// 		message := r.FormValue("message")
+// 		if message == "" {
+// 			http.Error(w, "Message is required", http.StatusBadRequest)
+// 			return
+// 		}
+// 		file, _, err := r.FormFile("file")
+// 		if err != nil && err != http.ErrMissingFile {
+// 			http.Error(w, "Error processing file", http.StatusInternalServerError)
+// 			return
+// 		}
+// 		err = sendEmailToSupport("support@example.com", message, file)
+// 		if err != nil {
+// 			http.Error(w, "Error sending support message", http.StatusInternalServerError)
+// 			return
+// 		}
+//
+// 		w.WriteHeader(http.StatusOK)
+// 		w.Write([]byte("Message sent successfully"))
+// 	}
+// }
+//
+// func sendEmailToSupport(email, message string, file io.Reader) error {
+// 	// Данные для SMTP-сервера
+// 	smtpHost := "smtp.example.com" // Адрес вашего SMTP сервера
+// 	smtpPort := "587"              // Порт сервера SMTP
+// 	from := "support@example.com"  // Ваш email, с которого будет отправляться письмо
+// 	password := "yourpassword"     // Пароль от email аккаунта
+//
+// 	// Создание сообщения
+// 	var buf bytes.Buffer
+// 	writer := multipart.NewWriter(&buf)
+//
+// 	// Создаем часть для текста сообщения
+// 	bodyWriter, err := writer.CreatePart(map[string][]string{
+// 		"Content-Type": {"text/plain; charset=UTF-8"},
+// 		"Content-Transfer-Encoding": {"quoted-printable"},
+// 	})
+// 	if err != nil {
+// 		return fmt.Errorf("failed to create text part: %v", err)
+// 	}
+//
+// 	// Кодируем сообщение
+// 	quotedPrintable := quotedprintable.NewWriter(bodyWriter)
+// 	_, err = quotedPrintable.Write([]byte(message))
+// 	if err != nil {
+// 		return fmt.Errorf("failed to write quoted-printable message: %v", err)
+// 	}
+// 	quotedPrintable.Close()
+//
+// 	// Если есть файл, добавляем его как вложение
+// 	if file != nil {
+// 		attachmentWriter, err := writer.CreateFormFile("attachment", "support_file")
+// 		if err != nil {
+// 			return fmt.Errorf("failed to create file part: %v", err)
+// 		}
+//
+// 		// Копируем файл в сообщение
+// 		_, err = io.Copy(attachmentWriter, file)
+// 		if err != nil {
+// 			return fmt.Errorf("failed to copy file: %v", err)
+// 		}
+// 	}
+//
+// 	writer.Close()
+//
+// 	to := []string{"dzhumashev.arman@gmail.com"} // Email получателя
+// 	subject := "Support Request from " + email // Тема письма
+// 	headers := map[string]string{
+// 		"From":    from,
+// 		"To":      strings.Join(to, ", "),
+// 		"Subject": subject,
+// 		"Content-Type": fmt.Sprintf("multipart/mixed; boundary=%s", writer.Boundary()),
+// 	}
+//
+// 	var messageBytes bytes.Buffer
+// 	for key, value := range headers {
+// 		messageBytes.WriteString(fmt.Sprintf("%s: %s\r\n", key, value))
+// 	}
+// 	messageBytes.WriteString("\r\n")
+// 	messageBytes.Write(buf.Bytes())
+//
+// 	auth := smtp.PlainAuth("", from, password, smtpHost)
+// 	err = smtp.SendMail(smtpHost+":"+smtpPort, auth, from, to, messageBytes.Bytes())
+// 	if err != nil {
+// 		return fmt.Errorf("failed to send email: %v", err)
+// 	}
+//
+// 	return nil
+// }

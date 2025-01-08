@@ -65,9 +65,10 @@ async function loadOrders() {
         console.error('Error fetching orders:', error);
     }
 }
+
+
 loadOrders();
 
-// Отправка сообщения в поддержку
 document.getElementById('supportForm')?.addEventListener('submit', async (e) => {
     e.preventDefault();
 

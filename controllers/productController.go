@@ -77,8 +77,35 @@ func GetCatalog(db *sql.DB) http.HandlerFunc {
 	}
 }
 
+func GetProductById(db *sql.DB) http.HandlerFunc {
+                   	return func(w http.ResponseWriter, r *http.Request) {
+    productIdStr := r.URL.Query().Get("id")
+    if productIdStr == "" {
+        http.Error(w, "Product ID is required", http.StatusBadRequest)
+        return
+    }
 
+    productId, err := strconv.Atoi(productIdStr)
+    if err != nil {
+        http.Error(w, "Invalid product ID", http.StatusBadRequest)
+        return
+    }
+    var product models.Product
+    err = db.QueryRow("SELECT id, name, description, price, category, image FROM products WHERE id = $1", productId).
+        Scan(&product.ID, &product.Name, &product.Description, &product.Price, &product.Category, &product.Image)
 
+    if err != nil {
+        if err.Error() == "no rows in result set" {
+            http.Error(w, "Product not found", http.StatusNotFound)
+        } else {
+            http.Error(w, "Error retrieving product", http.StatusInternalServerError)
+        }
+        return
+    }
+    w.Header().Set("Content-Type", "application/json")
+    json.NewEncoder(w).Encode(product)
+    }
+}
 func GetProducts(db *sql.DB) http.HandlerFunc {
     return func(w http.ResponseWriter, r *http.Request) {
         rows, err := db.Query("SELECT id, name, price, category FROM products")
