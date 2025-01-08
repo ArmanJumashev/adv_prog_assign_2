@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Catalog</title>
+</head>
+<body>
+<header>
+    <nav>
+        <a href="/static/index.html">Home</a>
+        <a href="/static/register.html">Register</a>
+        <a href="/static/login.html">Login</a>
+    </nav>
+</header>
+<main>
+    <h2>Catalog</h2>
+    <form id="filterForm">
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="category">
+        <label for="sort">Sort By:</label>
+        <select id="sort" name="sort">
+            <option value="price">Price</option>
+            <option value="name">Name</option>
+        </select>
+        <label for="order">Order:</label>
+        <select id="order" name="order">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+        </select>
+        <button type="submit">Apply Filters</button>
+    </form>
+    <div id="products"></div>
+    <div id="pagination">
+        <button id="prevPage">Previous</button>
+        <button id="nextPage">Next</button>
+    </div>
+</main>
+<script src="js/catalog.js"></script>
+</body>
+</html>
