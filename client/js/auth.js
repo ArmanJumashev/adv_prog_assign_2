@@ -19,6 +19,11 @@ document.getElementById('registerForm')?.addEventListener('submit', async (e) =>
 
         const message = await response.text();
         document.getElementById('message').innerText = message;
+
+        if (response.ok) {
+            // Сохраняем данные пользователя в localStorage
+            localStorage.setItem('user', JSON.stringify({ full_name: fullName, email, date_of_birth: dateOfBirth }));
+        }
     } catch (error) {
         console.error('Error during registration:', error);
         document.getElementById('message').innerText = 'An error occurred during registration.';
@@ -31,13 +36,30 @@ document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    const response = await fetch(`${API_URL}/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-    });
+    try {
+        const response = await fetch(`${API_URL}/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password }),
+        });
 
-    const message = await response.text();
-    document.getElementById('message').innerText = message;
+        // Проверяем статус ответа
+        if (response.ok) {
+            // Получаем JSON с данными пользователя
+            const user = await response.json();
+            console.log('response: ', response);
+            console.log(user);
+            // Сохраняем данные пользователя в localStorage
+            localStorage.setItem('user', JSON.stringify(user));
+            document.getElementById('message').innerText = 'Login successful!';
+        } else {
+            // Если ошибка, читаем текст ответа
+            const errorMessage = await response.text();
+            document.getElementById('message').innerText = errorMessage;
+        }
+    } catch (error) {
+        console.error('Error during login:', error);
+        document.getElementById('message').innerText = 'An error occurred during login.';
+    }
 });
 

@@ -40,35 +40,49 @@ func Register(db *sql.DB) http.HandlerFunc {
 
 // Авторизация пользователя
 func Login(db *sql.DB) http.HandlerFunc {
-                  return func(w http.ResponseWriter, r *http.Request) {
-	var user models.User
-	err := json.NewDecoder(r.Body).Decode(&user)
-	if err != nil {
-		http.Error(w, "Ошибка при декодировании данных", http.StatusBadRequest)
-		return
-	}
+    return func(w http.ResponseWriter, r *http.Request) {
+        var user models.User
+        err := json.NewDecoder(r.Body).Decode(&user)
+        if err != nil {
+            http.Error(w, "Ошибка при декодировании данных", http.StatusBadRequest)
+            return
+        }
 
-	// Проверяем, существует ли пользователь с таким email и правильным паролем
-	var dbUser models.User
-	err = db.QueryRow(`
-		SELECT full_name, email, password, date_of_birth
-		FROM users WHERE email = $1`, user.Email).Scan(&dbUser.FullName, &dbUser.Email, &dbUser.Password, &dbUser.DateOfBirth)
+        // Проверяем, существует ли пользователь с таким email и правильным паролем
+        var dbUser models.User
+        err = db.QueryRow(`
+            SELECT full_name, email, password, date_of_birth
+            FROM users WHERE email = $1`, user.Email).Scan(&dbUser.FullName, &dbUser.Email, &dbUser.Password, &dbUser.DateOfBirth)
 
-	if err != nil {
-		if err == sql.ErrNoRows {
-			http.Error(w, "Пользователь не найден", http.StatusUnauthorized)
-		} else {
-			http.Error(w, fmt.Sprintf("Ошибка при поиске пользователя: %v", err), http.StatusInternalServerError)
-		}
-		return
-	}
+        if err != nil {
+            if err == sql.ErrNoRows {
+                http.Error(w, "Пользователь не найден", http.StatusUnauthorized)
+            } else {
+                http.Error(w, fmt.Sprintf("Ошибка при поиске пользователя: %v", err), http.StatusInternalServerError)
+            }
+            return
+        }
 
-	if user.Password != dbUser.Password {
-		http.Error(w, "Неверный пароль", http.StatusUnauthorized)
-		return
-	}
+        // Проверяем пароль
+        if user.Password != dbUser.Password {
+            http.Error(w, "Неверный пароль", http.StatusUnauthorized)
+            return
+        }
 
-	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode("Пользователь авторизован")
+        // Возвращаем данные пользователя
+        response := struct {
+            FullName    string `json:"full_name"`
+            Email       string `json:"email"`
+            DateOfBirth string `json:"date_of_birth"`
+        }{
+            FullName:    dbUser.FullName,
+            Email:       dbUser.Email,
+            DateOfBirth: dbUser.DateOfBirth,
+        }
+
+        // Устанавливаем статус ответа и кодируем данные в JSON
+        w.WriteHeader(http.StatusOK)
+        json.NewEncoder(w).Encode(response)
     }
 }
+

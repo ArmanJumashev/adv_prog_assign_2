@@ -15,9 +15,14 @@ func SetupRoutes(db *sql.DB) *mux.Router {
     router.HandleFunc("/catalog", controllers.GetCatalog(db)).Methods("GET")
 
     // User Routes
-    router.HandleFunc("/users", controllers.GetUsers(db)).Methods("GET")
+//     router.HandleFunc("/users", controllers.GetUsers(db)).Methods("GET")
     router.HandleFunc("/register", controllers.Register(db)).Methods("POST")
     router.HandleFunc("/login", controllers.Login(db)).Methods("POST")
+    router.HandleFunc("/profile", controllers.GetUserProfile(db)).Methods("GET")
+    router.HandleFunc("/update-user", controllers.UpdateUserProfile(db)).Methods("POST")
+    router.HandleFunc("/orders", controllers.GetUserOrders(db)).Methods("GET")
+    router.HandleFunc("/support", controllers.SendSupportMessage()).Methods("POST")
+
 
     // Order Routes
     router.HandleFunc("/orders", controllers.GetOrders(db)).Methods("GET")
