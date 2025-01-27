@@ -92,5 +92,67 @@ function getProductById(id) {
         });
 }
 
+async function submitOrder() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    if (cart.length === 0) {
+        alert('Your cart is empty.');
+        return;
+    }
+    const order = {
+        user: user,
+        items: cart.map(item => ({
+            product_id: item.id,
+            quantity: item.quantity
+        })),
+        totalPrice: calculateTotalPrice(cart),
+        shippingAddress: getShippingAddress(),
+    };
+
+    try {
+        const response = await fetch(`${API_URL}/order`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(order),
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            alert('Your order has been placed successfully!');
+            localStorage.removeItem('cart');  // Очищаем корзину после отправки заказа
+            window.location.href = '/static/order-confirmation.html';  // Перенаправляем на страницу подтверждения
+        } else {
+            const error = await response.json();
+            alert(`Failed to submit order: ${error.message}`);
+        }
+    } catch (error) {
+        console.error('Error submitting order:', error);
+        alert('An error occurred while submitting your order.');
+    }
+}
+
+function calculateTotalPrice(cart) {
+    return cart.reduce((total, item) => {
+        const product = getProductById(item.id);  // Получаем товар по ID
+        return total + product.price * item.quantity;
+    }, 0).toFixed(2);
+}
+
+function getShippingAddress() {
+    return {
+        street: document.getElementById('street').value,
+        city: document.getElementById('city').value,
+        zipCode: document.getElementById('zipCode').value,
+    };
+}
+
+document.getElementById('checkoutButton').addEventListener('click', (e) => {
+    e.preventDefault();
+    submitOrder();
+});
+
 
 document.addEventListener('DOMContentLoaded', renderCart);

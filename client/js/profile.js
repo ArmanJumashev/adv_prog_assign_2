@@ -70,31 +70,49 @@ async function loadOrders() {
 loadOrders();
 
 document.getElementById('supportForm')?.addEventListener('submit', async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Отключаем стандартное поведение отправки формы
 
-    const message = document.getElementById('message').value;
+    const messageElement = document.getElementById('message');
     const fileInput = document.getElementById('file');
+    const supportMessageElement = document.getElementById('supportMessage');
+
+    const message = messageElement.value; // Получаем текст сообщения
     const formData = new FormData();
 
     formData.append('message', message);
-    if (fileInput.files[0]) {
+    if (fileInput.files.length > 0) {
         formData.append('file', fileInput.files[0]);
     }
 
+    const emailData = {
+        to: 'dzhumashev.arman@gmail.com',
+        subject: 'Support Request',
+        body: message
+    };
+
+    console.log('message: ', emailData);
+
     try {
-        const response = await fetch(`${API_URL}/support`, {
+        const response = await fetch('http://localhost:8080/support', { // Замените на ваш реальный серверный URL
             method: 'POST',
-            body: formData,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(emailData),
         });
 
         if (response.ok) {
-            document.getElementById('supportMessage').innerText = 'Message sent successfully!';
+            supportMessageElement.innerText = 'Message sent successfully!';
+            supportMessageElement.style.color = 'green';
         } else {
-            const error = await response.text();
-            document.getElementById('supportMessage').innerText = `Failed to send message: ${error}`;
+            const errorText = await response.text();
+            supportMessageElement.innerText = `Failed to send message: ${errorText}`;
+            supportMessageElement.style.color = 'red';
         }
     } catch (error) {
         console.error('Error sending support message:', error);
-        document.getElementById('supportMessage').innerText = 'An error occurred while sending the message.';
+        supportMessageElement.innerText = 'An error occurred while sending the message.';
+        supportMessageElement.style.color = 'red';
     }
 });
+

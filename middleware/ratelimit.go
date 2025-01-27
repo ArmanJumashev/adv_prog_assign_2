@@ -1,4 +1,3 @@
-// ratelimit.go
 package middleware
 
 import (

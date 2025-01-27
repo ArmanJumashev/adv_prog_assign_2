@@ -8,11 +8,9 @@ import (
 	"os/signal"
 	"time"
 
-//     "online-shop/data_loader"
-
 	"online-shop/db"
-	"online-shop/routes"
 	"online-shop/middleware"
+	"online-shop/routes"
 
 	"github.com/sirupsen/logrus"
 	"golang.org/x/time/rate"
@@ -29,8 +27,8 @@ func main() {
 	// Настройка логера
 	logger := logrus.New()
 	logger.SetFormatter(&logrus.JSONFormatter{}) // Формат JSON для логов
-	logger.SetLevel(logrus.InfoLevel)             // Уровень логирования
-	logger.SetOutput(logFile)                     // Вывод логов в файл
+	logger.SetLevel(logrus.InfoLevel)            // Уровень логирования
+	logger.SetOutput(logFile)                    // Вывод логов в файл
 
 	// Подключение к базе данных
 	logger.Info("Подключение к базе данных...")
