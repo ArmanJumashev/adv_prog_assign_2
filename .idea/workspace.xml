@@ -5,19 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f0bac02-1b47-43da-935b-61953821114c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shop_adv.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shop_adv.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/supportController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/js/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/cart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/js/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/authController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/authController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/orderController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/orderController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/js/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/register.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/userController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/userController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware/ratelimit.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/ratelimit.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routes/router.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.log" beforeDir="false" afterPath="$PROJECT_DIR$/server.log" afterDir="false" />
     </list>
@@ -25,6 +18,13 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
   </component>
   <component name="GOROOT" url="file://C:/Program Files/Go" />
   <component name="Git.Settings">
@@ -40,6 +40,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
     "JavaScript Debug.index.html.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -52,7 +53,8 @@
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "D:/study/ausbildungszentrum/go/pet_projects/shop/shop_adv/main.go"
+    "onboarding.tips.debug.path": "D:/study/ausbildungszentrum/go/pet_projects/shop/shop_adv/main.go",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">

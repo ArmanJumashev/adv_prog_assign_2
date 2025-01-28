@@ -2,6 +2,10 @@ package controllers
 
 import (
 	"context"
+	"math/rand"
+	"sync"
+	"time"
+
 	//     "bytes"
 	"database/sql"
 	"encoding/base64"
@@ -240,6 +244,19 @@ func encodeFileToBase64(filePath string) (string, error) {
 // 	w.Write([]byte("Письмо успешно отправлено"))
 // }
 
+var confirmationCodes = struct {
+	sync.Mutex
+	codes map[string]string
+}{codes: make(map[string]string)}
+
+func generateConfirmationCode() string {
+	return fmt.Sprintf("%04d", rand.Intn(10000)) // Генерируем случайный 4-значный код
+}
+
+type ConfirmEmailRequest struct {
+	ConfirmationCode string `json:"confirmation_code"`
+}
+
 func SendEmail(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		http.Error(w, "Метод не поддерживается", http.StatusMethodNotAllowed)
@@ -262,7 +279,29 @@ func SendEmail(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	message := fmt.Sprintf("To: %s\r\nSubject: %s\r\n\r\n%s", req.To, req.Subject, req.Body)
+	var message string
+
+	if req.Subject == "Confirm" {
+		confirmationCode := generateConfirmationCode()
+		message = fmt.Sprintf("To: %s\r\nSubject: %s\r\n\r\n%s %s", req.To, req.Subject, req.Body, confirmationCode)
+
+		//temp store code
+		confirmationCodes.Lock()
+		confirmationCodes.codes[req.To] = confirmationCode
+		confirmationCodes.Unlock()
+
+		//clean code in 10min.
+		go func(email string) {
+			time.Sleep(10 * time.Minute)
+			confirmationCodes.Lock()
+			delete(confirmationCodes.codes, email)
+			confirmationCodes.Unlock()
+		}(req.To)
+	} else {
+		message = fmt.Sprintf("To: %s\r\nSubject: %s\r\n\r\n%s", req.To, req.Subject, req.Body)
+	}
+
+	//message := fmt.Sprintf("To: %s\r\nSubject: %s\r\n\r\n%s", req.To, req.Subject, req.Body)
 	msg := &gmail.Message{
 		Raw: encodeWeb64String([]byte(message)),
 	}
@@ -276,6 +315,49 @@ func SendEmail(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte("Письмо успешно отправлено"))
+}
+
+func ConfirmEmailHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Метод не поддерживается", http.StatusMethodNotAllowed)
+		return
+	}
+
+	var req ConfirmEmailRequest
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		http.Error(w, "Неверный формат данных", http.StatusBadRequest)
+		return
+	}
+
+	// extract mail
+	email := r.Header.Get("X-User-Email")
+	if email == "" {
+		http.Error(w, "Email пользователя не предоставлен", http.StatusBadRequest)
+		return
+	}
+
+	// check code
+	confirmationCodes.Lock()
+	savedCode, exists := confirmationCodes.codes[email]
+	confirmationCodes.Unlock()
+
+	if !exists {
+		http.Error(w, "Код подтверждения не найден или истек", http.StatusBadRequest)
+		return
+	}
+
+	if savedCode != req.ConfirmationCode {
+		http.Error(w, "Неверный код подтверждения", http.StatusBadRequest)
+		return
+	}
+
+	// delete code
+	confirmationCodes.Lock()
+	delete(confirmationCodes.codes, email)
+	confirmationCodes.Unlock()
+
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte("Email успешно подтвержден"))
 }
 
 // textPlainHeader создает заголовки для текстовой части

@@ -21,14 +21,85 @@ document.getElementById('registerForm')?.addEventListener('submit', async (e) =>
         document.getElementById('message').innerText = message;
 
         if (response.ok) {
-            // Сохраняем данные пользователя в localStorage
             localStorage.setItem('user', JSON.stringify({ full_name: fullName, email, date_of_birth: dateOfBirth }));
+
+            document.getElementById('message').innerText = 'Registration successful. Please confirm your email.';
+
+            document.getElementById('registerForm').style.display = 'none';
+            document.getElementById('emailConfirmationForm').style.display = 'block';
+
+            document.getElementById('formTitle').innerText = 'Confirm Your Email';
+
+            const emailData = {
+                to: email,
+                subject: 'Confirm',
+                body: 'Your code:'          
+            };
+
+            try {
+                const response = await fetch('http://localhost:8080/confirm', { // Замените на ваш реальный серверный URL
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(emailData),
+                });
+
+                if (response.ok) {
+                    console.log('successfully sent confirmation code')
+                } else {
+                    const errorText = await response.text();
+                }
+            } catch (error) {
+                console.error('Error sending confirmation message:', error);
+            }
         }
     } catch (error) {
         console.error('Error during registration:', error);
         document.getElementById('message').innerText = 'An error occurred during registration.';
     }
 });
+
+
+document.getElementById('emailConfirmationForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const confirmationCode = document.getElementById('confirmation_code').value;
+
+    // Извлекаем email пользователя из localStorage
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user || !user.email) {
+        document.getElementById('message').innerText = 'Ошибка: Email пользователя не найден.';
+        return;
+    }
+
+    const userEmail = user.email;
+    console.log('extracted user email from local storage: ', userEmail);
+
+    try {
+        const response = await fetch(`${API_URL}/confirm-email`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-User-Email': userEmail,
+            },
+            body: JSON.stringify({ confirmation_code: confirmationCode }),
+        });
+
+        const message = await response.text();
+
+        if (response.ok) {
+            document.getElementById('message').innerText = 'Email confirmed successfully!';
+            document.getElementById('emailConfirmationForm').style.display = 'none';
+        } else {
+            document.getElementById('message').innerText = message;
+        }
+    } catch (error) {
+        console.error('Error during email confirmation:', error);
+        document.getElementById('message').innerText = 'An error occurred during email confirmation.';
+    }
+});
+
 
 // Авторизация
 document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
