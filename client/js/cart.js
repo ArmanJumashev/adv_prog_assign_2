@@ -27,9 +27,9 @@ async function renderCart() {
         totalPrice += totalItemPrice;
 
         const cartItemHTML = `
-            <div class="cart-item">
-                <img src="${product.image}" alt="${product.name}" class="cart-item-image"/>
-                <div class="cart-item-info">
+            <div class="cart-item" >
+                <img src="${product.image}" alt="${product.name}" class="cart-item-image" style="height: 100px; width: 100px"/>
+                <div class="cart-item-info" >
                     <h3>${product.name}</h3>
                     <p><strong>Price:</strong> $${product.price}</p>
                     <p><strong>Quantity:</strong>
@@ -107,14 +107,16 @@ async function submitOrder() {
             quantity: item.quantity
         })),
         totalPrice: calculateTotalPrice(cart),
-        shippingAddress: getShippingAddress(),
+        // shippingAddress: getShippingAddress(),
     };
 
+    console.log('order: ', order)
     try {
         const response = await fetch(`${API_URL}/order`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
             },
             body: JSON.stringify(order),
         });
@@ -134,20 +136,34 @@ async function submitOrder() {
     }
 }
 
-function calculateTotalPrice(cart) {
-    return cart.reduce((total, item) => {
-        const product = getProductById(item.id);  // Получаем товар по ID
-        return total + product.price * item.quantity;
-    }, 0).toFixed(2);
+// function calculateTotalPrice(cart) {
+//     return cart.reduce((total, item) => {
+//         const product = getProductById(item.id);  // Получаем товар по ID
+//         return total + product.price * item.quantity;
+//     }, 0).toFixed(2);
+// }
+
+async function calculateTotalPrice(cart) {
+    let total = 0;
+
+    for (const item of cart) {
+        const product = await getProductById(item.id); // Wait for the product data
+        if (product) {
+            total += product.price * item.quantity;
+        }
+    }
+
+    return total.toFixed(2);
 }
 
-function getShippingAddress() {
-    return {
-        street: document.getElementById('street').value,
-        city: document.getElementById('city').value,
-        zipCode: document.getElementById('zipCode').value,
-    };
-}
+
+// function getShippingAddress() {
+//     return {
+//         street: document.getElementById('street').value,
+//         city: document.getElementById('city').value,
+//         zipCode: document.getElementById('zipCode').value,
+//     };
+// }
 
 document.getElementById('checkoutButton').addEventListener('click', (e) => {
     e.preventDefault();

@@ -3,6 +3,7 @@ package routes
 import (
 	"database/sql"
 	"online-shop/controllers"
+	"online-shop/middleware"
 
 	"github.com/gorilla/mux"
 )
@@ -27,9 +28,11 @@ func SetupRoutes(db *sql.DB) *mux.Router {
 	router.HandleFunc("/confirm", controllers.SendEmail)
 
 	router.HandleFunc("/confirm-email", controllers.ConfirmEmailHandler)
-	// Order Routes
-	//     router.HandleFunc("/orders", controllers.GetOrders(db)).Methods("GET")
-	//     router.HandleFunc("/order", controllers.CreateOrder(db)).Methods("POST")
+
+	protectedRouter := router.PathPrefix("/").Subrouter()
+	protectedRouter.Use(middleware.AuthToken)
+
+	protectedRouter.HandleFunc("/order", controllers.OrderHandler(db)).Methods("POST")
 
 	return router
 }
