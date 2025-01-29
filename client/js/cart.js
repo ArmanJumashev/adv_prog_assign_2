@@ -106,17 +106,26 @@ async function submitOrder() {
             product_id: item.id,
             quantity: item.quantity
         })),
-        totalPrice: calculateTotalPrice(cart),
+        // totalPrice: calculateTotalPrice(cart),
         // shippingAddress: getShippingAddress(),
     };
 
-    console.log('order: ', order)
+    const body = JSON.stringify(order, (key, value) => {
+        if (typeof value === 'function' || value === undefined) {
+            return undefined; // Exclude functions and undefined values
+        }
+        return value;
+    });
+
+    console.log('body', body);
+
+    console.log('order: ', order, ' || user: ', user['token']);
     try {
         const response = await fetch(`${API_URL}/order`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${user.token}`
+                'Authorization': `Bearer ${user['token']}`
             },
             body: JSON.stringify(order),
         });
@@ -125,7 +134,6 @@ async function submitOrder() {
             const data = await response.json();
             alert('Your order has been placed successfully!');
             localStorage.removeItem('cart');  // Очищаем корзину после отправки заказа
-            window.location.href = '/static/order-confirmation.html';  // Перенаправляем на страницу подтверждения
         } else {
             const error = await response.json();
             alert(`Failed to submit order: ${error.message}`);

@@ -3,6 +3,7 @@ package controllers
 import (
 	"database/sql"
 	"encoding/json"
+	"log"
 	"net/http"
 	"time"
 )
@@ -13,6 +14,22 @@ type Order struct {
 	ProductID int       `json:"product_id"`
 	Quantity  int       `json:"quantity"`
 	CreatedAt time.Time `json:"created_at"`
+}
+
+type OrderRequest struct {
+	User       User        `json:"user"`
+	Items      []OrderItem `json:"items"`
+	TotalPrice float64     `json:"totalPrice"`
+}
+
+type User struct {
+	Email string `json:"email"`
+	Token string `json:"token"`
+}
+
+type OrderItem struct {
+	ProductID int `json:"product_id"`
+	Quantity  int `json:"quantity"`
 }
 
 func GetOrders(db *sql.DB) http.HandlerFunc {
@@ -41,7 +58,43 @@ func GetOrders(db *sql.DB) http.HandlerFunc {
 
 func OrderHandler(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		// Only allow POST requests.
+		if r.Method != http.MethodPost {
+			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+			return
+		}
 
+		// Parse the request body.
+		var orderReq OrderRequest
+		if err := json.NewDecoder(r.Body).Decode(&orderReq); err != nil {
+			http.Error(w, "Invalid request body", http.StatusBadRequest)
+			return
+		}
+
+		// Validate the request data.
+		if orderReq.User.Email == "" || len(orderReq.Items) == 0 {
+			http.Error(w, "Invalid order data", http.StatusBadRequest)
+			return
+		}
+
+		// Save the order to the database.
+		for _, item := range orderReq.Items {
+			_, err := db.Exec(`
+				INSERT INTO orders (user_email, product_id, quantity, created_at)
+				VALUES ($1, $2, $3, $4)
+			`, orderReq.User.Email, item.ProductID, item.Quantity, time.Now())
+			if err != nil {
+				log.Printf("Error saving order to database: %v", err)
+				http.Error(w, "Failed to save order", http.StatusInternalServerError)
+				return
+			}
+		}
+
+		// Respond with a success message.
+		response := map[string]string{"message": "Order placed successfully!"}
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusCreated)
+		json.NewEncoder(w).Encode(response)
 	}
 }
 

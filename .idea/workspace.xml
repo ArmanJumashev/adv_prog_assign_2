@@ -6,14 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="3f0bac02-1b47-43da-935b-61953821114c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/cart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/catalog.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/catalog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/js/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/cart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/register.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/orderController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/orderController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routes/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/productController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/productController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.log" beforeDir="false" afterPath="$PROJECT_DIR$/server.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
