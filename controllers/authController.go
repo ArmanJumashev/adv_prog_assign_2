@@ -13,7 +13,6 @@ import (
 
 var jwtSecret = []byte("advanced")
 
-
 func Register(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var user models.User
@@ -100,4 +99,3 @@ func Login(db *sql.DB) http.HandlerFunc {
 		json.NewEncoder(w).Encode(response)
 	}
 }
-

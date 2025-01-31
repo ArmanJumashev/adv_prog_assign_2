@@ -34,5 +34,7 @@ func SetupRoutes(db *sql.DB) *mux.Router {
 
 	protectedRouter.HandleFunc("/order", controllers.OrderHandler(db)).Methods("POST")
 
+	protectedRouter.HandleFunc("/admin", controllers.AdminPage)
+
 	return router
 }
