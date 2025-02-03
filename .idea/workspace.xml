@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="3f0bac02-1b47-43da-935b-61953821114c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handlers_test/handlers_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/handlers_test/handlers_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware/authToken.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/authToken.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routes/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/js/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/js/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/cart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/js/catalog.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/catalog.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/js/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/profile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.log" beforeDir="false" afterPath="$PROJECT_DIR$/server.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,7 +48,7 @@
     "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
     "git-widget-placeholder": "master",
     "go.import.settings.migrated": "true",
-    "last_opened_file_path": "D:/study/ausbildungszentrum/go/pet_projects/shop/online-shop",
+    "last_opened_file_path": "D:/study/ausbildungszentrum/go/pet_projects/shop/online-shop-deploy/online-shop",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",

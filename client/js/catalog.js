@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8080';
+const API_URL = 'https://9c26-147-30-51-130.ngrok-free.app';
 let currentPage = 1;
 
 // Function to fetch products

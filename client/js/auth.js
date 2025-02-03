@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8080';
+const API_URL = 'https://9c26-147-30-51-130.ngrok-free.app';
 
 // Регистрация
 document.getElementById('registerForm')?.addEventListener('submit', async (e) => {
@@ -37,7 +37,7 @@ document.getElementById('registerForm')?.addEventListener('submit', async (e) =>
             };
 
             try {
-                const response = await fetch('http://localhost:8080/confirm', { // Замените на ваш реальный серверный URL
+                const response = await fetch(' https://9c26-147-30-51-130.ngrok-free.app/confirm', { // Замените на ваш реальный серверный URL
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

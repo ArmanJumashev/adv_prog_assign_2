@@ -1907,3 +1907,80 @@
 {"level":"info","msg":"Подключение к базе данных...","time":"2025-01-31T16:17:44+05:00"}
 {"level":"info","msg":"Настройка маршрутов...","time":"2025-01-31T16:17:44+05:00"}
 {"level":"info","msg":"Запуск сервера...","port":":8080","time":"2025-01-31T16:17:44+05:00"}
+{"level":"info","msg":"Отдача index.html для запроса: /","time":"2025-01-31T16:25:07+05:00"}
+{"duration":76884700,"level":"info","method":"GET","msg":"Запрос обработан","status_code":200,"time":"2025-01-31T16:25:07+05:00","url":"/"}
+{"duration":0,"level":"info","method":"GET","msg":"Запрос обработан","status_code":401,"time":"2025-01-31T16:25:13+05:00","url":"/admin"}
+{"duration":0,"level":"info","method":"GET","msg":"Запрос обработан","status_code":401,"time":"2025-01-31T16:35:55+05:00","url":"/admin"}
+{"duration":0,"level":"info","method":"GET","msg":"Запрос обработан","status_code":401,"time":"2025-01-31T16:35:56+05:00","url":"/admin"}
+{"duration":0,"level":"info","method":"GET","msg":"Запрос обработан","status_code":401,"time":"2025-01-31T16:35:56+05:00","url":"/admin"}
+{"duration":0,"level":"info","method":"GET","msg":"Запрос обработан","status_code":401,"time":"2025-01-31T16:35:56+05:00","url":"/admin"}
+{"duration":0,"level":"info","method":"GET","msg":"Запрос обработан","status_code":401,"time":"2025-01-31T16:35:56+05:00","url":"/admin"}
+{"duration":0,"level":"info","method":"GET","msg":"Запрос обработан","status_code":401,"time":"2025-01-31T16:35:56+05:00","url":"/admin"}
+{"duration":0,"level":"info","method":"GET","msg":"Запрос обработан","status_code":401,"time":"2025-01-31T16:35:56+05:00","url":"/admin"}
+{"duration":810800,"level":"info","method":"GET","msg":"Запрос обработан","status_code":401,"time":"2025-01-31T16:35:57+05:00","url":"/admin"}
+{"level":"warning","msg":"Too many requests","time":"2025-01-31T16:35:57+05:00"}
+{"level":"warning","msg":"Too many requests","time":"2025-01-31T16:35:57+05:00"}
+{"duration":16589500,"level":"info","method":"GET","msg":"Запрос обработан","status_code":200,"time":"2025-01-31T16:36:09+05:00","url":"/static/login.html"}
+{"duration":13886800,"level":"info","method":"GET","msg":"Запрос обработан","status_code":200,"time":"2025-01-31T16:36:09+05:00","url":"/static/css/styles.css"}
+{"duration":39408400,"level":"info","method":"GET","msg":"Запрос обработан","status_code":200,"time":"2025-01-31T16:36:09+05:00","url":"/static/js/auth.js"}
+{"duration":102258700,"level":"info","method":"POST","msg":"Запрос обработан","status_code":200,"time":"2025-01-31T16:36:29+05:00","url":"/login"}
+{"duration":0,"level":"info","method":"GET","msg":"Запрос обработан","status_code":401,"time":"2025-01-31T16:36:35+05:00","url":"/admin"}
+{"duration":0,"level":"info","method":"GET","msg":"Запрос обработан","status_code":401,"time":"2025-01-31T16:36:37+05:00","url":"/admin"}
+{"duration":279700,"level":"info","method":"GET","msg":"Запрос обработан","status_code":401,"time":"2025-01-31T16:43:05+05:00","url":"/admin"}
+{"duration":1384500,"level":"info","method":"POST","msg":"Запрос обработан","status_code":200,"time":"2025-01-31T16:43:42+05:00","url":"/login"}
+{"duration":0,"level":"info","method":"GET","msg":"Запрос обработан","status_code":200,"time":"2025-01-31T16:44:07+05:00","url":"/admin"}
+{"level":"info","msg":"Получен сигнал о завершении работы","time":"2025-01-31T17:35:06+05:00"}
+{"level":"info","msg":"Остановка сервера...","time":"2025-01-31T17:35:06+05:00"}
+{"level":"info","msg":"Сервер остановлен успешно","time":"2025-01-31T17:35:06+05:00"}
+{"level":"info","msg":"Закрытие соединения с базой данных.","time":"2025-01-31T17:35:06+05:00"}
+{"level":"info","msg":"Подключение к базе данных...","time":"2025-01-31T17:37:03+05:00"}
+{"level":"info","msg":"Настройка маршрутов...","time":"2025-01-31T17:37:03+05:00"}
+{"level":"info","msg":"Запуск сервера...","port":":8080","time":"2025-01-31T17:37:03+05:00"}
+{"level":"info","msg":"Отдача index.html для запроса: /","time":"2025-01-31T17:37:10+05:00"}
+{"duration":43011600,"level":"info","method":"GET","msg":"Запрос обработан","status_code":200,"time":"2025-01-31T17:37:10+05:00","url":"/"}
+{"duration":38003000,"level":"info","method":"GET","msg":"Запрос обработан","status_code":200,"time":"2025-01-31T17:37:13+05:00","url":"/static/catalog.html"}
+{"duration":0,"level":"info","method":"GET","msg":"Запрос обработан","status_code":200,"time":"2025-01-31T17:37:13+05:00","url":"/static/css/styles.css"}
+{"duration":28986700,"level":"info","method":"GET","msg":"Запрос обработан","status_code":200,"time":"2025-01-31T17:37:13+05:00","url":"/static/js/catalog.js"}
+{"duration":125523400,"level":"info","method":"GET","msg":"Запрос обработан","status_code":0,"time":"2025-01-31T17:37:14+05:00","url":"/catalog"}
+{"level":"info","msg":"Получен сигнал о завершении работы","time":"2025-01-31T17:49:02+05:00"}
+{"level":"info","msg":"Остановка сервера...","time":"2025-01-31T17:49:02+05:00"}
+{"level":"info","msg":"Сервер остановлен успешно","time":"2025-01-31T17:49:02+05:00"}
+{"level":"info","msg":"Закрытие соединения с базой данных.","time":"2025-01-31T17:49:02+05:00"}
+{"level":"info","msg":"Подключение к базе данных...","time":"2025-01-31T17:49:05+05:00"}
+{"level":"info","msg":"Настройка маршрутов...","time":"2025-01-31T17:49:05+05:00"}
+{"level":"info","msg":"Запуск сервера...","port":":8080","time":"2025-01-31T17:49:05+05:00"}
+{"duration":559700,"level":"info","method":"GET","msg":"Запрос обработан","status_code":304,"time":"2025-01-31T17:49:14+05:00","url":"/static/catalog.html"}
+{"duration":158013300,"level":"info","method":"GET","msg":"Запрос обработан","status_code":0,"time":"2025-01-31T17:49:15+05:00","url":"/catalog"}
+{"duration":0,"level":"info","method":"GET","msg":"Запрос обработан","status_code":304,"time":"2025-01-31T17:49:18+05:00","url":"/static/catalog.html"}
+{"duration":498400,"level":"info","method":"GET","msg":"Запрос обработан","status_code":304,"time":"2025-01-31T17:49:19+05:00","url":"/static/catalog.html"}
+{"duration":0,"level":"info","method":"GET","msg":"Запрос обработан","status_code":0,"time":"2025-01-31T17:49:19+05:00","url":"/catalog"}
+{"duration":683600,"level":"info","method":"GET","msg":"Запрос обработан","status_code":0,"time":"2025-01-31T17:49:25+05:00","url":"/catalog"}
+{"duration":42402800,"level":"info","method":"GET","msg":"Запрос обработан","status_code":200,"time":"2025-01-31T17:49:33+05:00","url":"/static/login.html"}
+{"duration":0,"level":"info","method":"GET","msg":"Запрос обработан","status_code":200,"time":"2025-01-31T17:49:33+05:00","url":"/static/js/auth.js"}
+{"duration":18420900,"level":"info","method":"GET","msg":"Запрос обработан","status_code":200,"time":"2025-01-31T17:49:34+05:00","url":"/static/register.html"}
+{"duration":0,"level":"info","method":"GET","msg":"Запрос обработан","status_code":304,"time":"2025-01-31T17:50:01+05:00","url":"/static/js/auth.js"}
+{"duration":1933400,"level":"info","method":"POST","msg":"Запрос обработан","status_code":200,"time":"2025-01-31T17:50:03+05:00","url":"/login"}
+{"duration":924100,"level":"info","method":"GET","msg":"Запрос обработан","status_code":0,"time":"2025-01-31T17:50:08+05:00","url":"/catalog"}
+{"duration":507900,"level":"info","method":"GET","msg":"Запрос обработан","status_code":304,"time":"2025-01-31T17:50:11+05:00","url":"/static/js/auth.js"}
+{"duration":0,"level":"info","method":"GET","msg":"Запрос обработан","status_code":401,"time":"2025-01-31T17:50:28+05:00","url":"/admin"}
+{"level":"info","msg":"Отдача index.html для запроса: /","time":"2025-01-31T17:58:26+05:00"}
+{"duration":0,"level":"info","method":"GET","msg":"Запрос обработан","status_code":200,"time":"2025-01-31T17:58:26+05:00","url":"/"}
+{"level":"info","msg":"Получен сигнал о завершении работы","time":"2025-01-31T19:44:21+05:00"}
+{"level":"info","msg":"Остановка сервера...","time":"2025-01-31T19:44:21+05:00"}
+{"level":"info","msg":"Сервер остановлен успешно","time":"2025-01-31T19:44:21+05:00"}
+{"level":"info","msg":"Закрытие соединения с базой данных.","time":"2025-01-31T19:44:21+05:00"}
+{"level":"info","msg":"Подключение к базе данных...","time":"2025-02-03T12:56:21+05:00"}
+{"level":"info","msg":"Настройка маршрутов...","time":"2025-02-03T12:56:21+05:00"}
+{"level":"info","msg":"Запуск сервера...","port":":8080","time":"2025-02-03T12:56:21+05:00"}
+{"level":"info","msg":"Отдача index.html для запроса: /","time":"2025-02-03T12:56:43+05:00"}
+{"duration":86476400,"level":"info","method":"GET","msg":"Запрос обработан","status_code":200,"time":"2025-02-03T12:56:43+05:00","url":"/"}
+{"duration":16109900,"level":"info","method":"GET","msg":"Запрос обработан","status_code":200,"time":"2025-02-03T12:56:48+05:00","url":"/static/profile.html"}
+{"duration":8087200,"level":"info","method":"GET","msg":"Запрос обработан","status_code":200,"time":"2025-02-03T12:56:48+05:00","url":"/static/css/styles.css"}
+{"duration":29464000,"level":"info","method":"GET","msg":"Запрос обработан","status_code":200,"time":"2025-02-03T12:56:48+05:00","url":"/static/js/profile.js"}
+{"level":"info","msg":"Получен сигнал о завершении работы","time":"2025-02-03T12:57:20+05:00"}
+{"level":"info","msg":"Остановка сервера...","time":"2025-02-03T12:57:20+05:00"}
+{"error":"context deadline exceeded","level":"error","msg":"Ошибка при остановке сервера","time":"2025-02-03T12:57:25+05:00"}
+{"level":"info","msg":"Закрытие соединения с базой данных.","time":"2025-02-03T12:57:25+05:00"}
+{"level":"info","msg":"Подключение к базе данных...","time":"2025-02-03T19:21:32+05:00"}
+{"level":"info","msg":"Настройка маршрутов...","time":"2025-02-03T19:21:32+05:00"}
+{"level":"info","msg":"Запуск сервера...","port":":8080","time":"2025-02-03T19:21:32+05:00"}
