@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f0bac02-1b47-43da-935b-61953821114c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/js/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/js/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/cart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/js/catalog.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/catalog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/js/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.log" beforeDir="false" afterPath="$PROJECT_DIR$/server.log" afterDir="false" />
-    </list>
+    <list default="true" id="3f0bac02-1b47-43da-935b-61953821114c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,9 +39,9 @@
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
     "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "deploy",
     "go.import.settings.migrated": "true",
-    "last_opened_file_path": "D:/study/ausbildungszentrum/go/pet_projects/shop/online-shop-deploy/online-shop",
+    "last_opened_file_path": "D:/study/ausbildungszentrum/go/pet_projects/shop/online-shop — копия/online-shop",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
