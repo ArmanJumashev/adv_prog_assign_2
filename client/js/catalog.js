@@ -1,4 +1,4 @@
-const API_URL = 'https://9c26-147-30-51-130.ngrok-free.app';
+const API_URL = 'https://adv-prog-assign-2.onrender.com';
 let currentPage = 1;
 
 // Function to fetch products
