@@ -1,4 +1,4 @@
-const API_URL = 'https://9c26-147-30-51-130.ngrok-free.app';
+const API_URL = 'https://adv-prog-assign-2.onrender.com';
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOMContentLoaded');
@@ -93,7 +93,7 @@ document.getElementById('supportForm')?.addEventListener('submit', async (e) => 
     console.log('message: ', emailData);
 
     try {
-        const response = await fetch('http://localhost:8080/support', { // Замените на ваш реальный серверный URL
+        const response = await fetch('https://adv-prog-assign-2.onrender.com/support', { // Замените на ваш реальный серверный URL
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
